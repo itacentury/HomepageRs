@@ -1,12 +1,12 @@
-body {
-  background-color: #002b36;
-  height: 100vh;
-  color: white;
-  font: 1.3rem Inconsolata, monospace;
-  text-shadow: 0 0 2px #C8C8C8;
-}
-
-::selection {
-  background: #24666d;
-  text-shadow: none;
-}
+:root {
+    --background-color: #151515;
+    --font-color: #eaeaea;
+    --invert-font-color: #151515;
+    --primary-color: #1a95e0;
+    --secondary-color: #999;
+    --block-background-color: #1e1e1e;
+    --code-bg-color: #1e1e1e;
+    --progress-bar-background: #444;
+    --progress-bar-fill: #eaeaea;
+  }
+  

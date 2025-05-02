@@ -1,12 +1,7 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Rocket Example</title>
-    <link rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
-    <h1>Hi {{ name }}!</h1>
-    <h3>This web app was built with rust.</h3>
-  </body>
-</html>
+{{#*inline "page"}}
+
+<h1>Hi {{ name }}!</h1>
+<p>This web app was built with rust.</p>
+
+{{/inline}}
+{{> layout}}
