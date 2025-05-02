@@ -1,5 +1,5 @@
-use rocket::Request;
 use rocket_dyn_templates::{Template, context};
+use rocket::{Request, fs::{FileServer, relative}};
 
 #[macro_use] extern crate rocket;
 
@@ -21,6 +21,7 @@ fn not_found(req: &Request) -> String {
 #[launch]
 fn rocket() -> _ {
     rocket::build()
+        .mount("/", FileServer::from(relative!("static")))
         .mount("/", routes![index])
         .register("/", catchers![internal_error, not_found])
         .attach(Template::fairing())

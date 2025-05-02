@@ -1,0 +1,12 @@
+body {
+  background-color: #002b36;
+  height: 100vh;
+  color: white;
+  font: 1.3rem Inconsolata, monospace;
+  text-shadow: 0 0 2px #C8C8C8;
+}
+
+::selection {
+  background: #24666d;
+  text-shadow: none;
+}
