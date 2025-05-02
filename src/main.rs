@@ -1,10 +1,11 @@
 use rocket::Request;
+use rocket_dyn_templates::{Template, context};
 
 #[macro_use] extern crate rocket;
 
 #[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
+fn index() -> Template {
+    Template::render("index", context! { name: "Julian" })
 }
 
 #[catch(500)]
@@ -19,5 +20,8 @@ fn not_found(req: &Request) -> String {
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index]).register("/", catchers![internal_error, not_found])
+    rocket::build()
+        .mount("/", routes![index])
+        .register("/", catchers![internal_error, not_found])
+        .attach(Template::fairing())
 }
