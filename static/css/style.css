@@ -15,6 +15,13 @@ body {
   margin-left: 2rem;
 }
 
+.ascii-art {
+  font-family: monospace;
+  white-space: pre;
+  display: table;
+  margin: 0 auto;
+}
+
 /* card */
 .card-columns {
   display: flex;

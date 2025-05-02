@@ -8,7 +8,6 @@ use serde_json::json;
 #[get("/")]
 fn index() -> Template {
     Template::render("index", context! { 
-        name: "Julian",
         education: get_education_vec(),
         experience: get_experience_vec(),
     })
