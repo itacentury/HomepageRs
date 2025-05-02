@@ -15,6 +15,7 @@ body {
   margin-left: 2rem;
   max-width: 65%;
   margin: 0 auto;
+  text-shadow: 0 0 5px #C8C8C8;
 }
 
 /* ascii art */
@@ -29,8 +30,6 @@ body {
   padding: 1rem;
   margin-top: 0.5em;
 }
-
-/* content-section */
 .content-section {
   display: none;
 }
@@ -38,6 +37,13 @@ body {
   display: block;
 }
 
+/* navigation */
+nav a {
+  text-shadow: 0 0 10px #C8C8C8;
+}
+nav a.active {
+  text-shadow: 0 0 5px #C8C8C8;
+}
 .menu-horizontal ul {
   display: flex;
   flex-direction: row;
