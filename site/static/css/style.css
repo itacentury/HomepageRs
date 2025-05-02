@@ -13,13 +13,35 @@
 body {
   font-size: 16px;
   margin-left: 2rem;
+  max-width: 65%;
+  margin: 0 auto;
 }
 
+/* ascii art */
 .ascii-art {
   font-family: monospace;
   white-space: pre;
-  display: table;
-  margin: 0 auto;
+}
+
+/* content-box */
+.content-box {
+  border: 1px solid var(--font-color);
+  padding: 1rem;
+  margin-top: 0.5em;
+}
+
+/* content-section */
+.content-section {
+  display: none;
+}
+.content-section.active {
+  display: block;
+}
+
+.menu-horizontal ul {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
 }
 
 /* card */

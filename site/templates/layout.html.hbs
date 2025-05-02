@@ -8,6 +8,10 @@
   </head>
   <body class="terminal">
     {{~> page}}
-    {{> footer}}
+
+    <script type="module">
+      import init from "/pkg/nav.js";
+      init();
+    </script>
   </body>
 </html>
