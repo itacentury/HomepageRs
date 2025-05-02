@@ -3,15 +3,6 @@
 version = 4
 
 [[package]]
-name = "HomepageRs"
-version = "0.1.0"
-dependencies = [
- "rocket",
- "rocket_dyn_templates",
- "serde_json",
-]
-
-[[package]]
 name = "addr2line"
 version = "0.24.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1365,6 +1356,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9203b8055f63a2a00e2f593bb0510367fe707d7ff1e5c872de2f537b339e5410"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "site"
+version = "0.1.0"
+dependencies = [
+ "rocket",
+ "rocket_dyn_templates",
+ "serde_json",
 ]
 
 [[package]]
