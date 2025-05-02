@@ -1,7 +1,38 @@
 {{#*inline "page"}}
 
-<h1>Hi {{ name }}!</h1>
-<p>This web app was built with rust.</p>
+<h1>{{ name }}!</h1>
+
+<div class="timeline-columns">
+  <!-- education -->
+  <div class="timeline-wrapper">
+    <p class="terminal-prompt">education</p>
+    <div class="terminal-timeline">
+      {{#each education}}
+        <div class="terminal-card">
+          <header>{{type}}<br/>({{year}})</header>
+          <div>
+            <p>{{name}}<br/>{{place}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <!-- experience -->
+  <div class="timeline-wrapper">
+    <p class="terminal-prompt">experience</p>
+    <div class="terminal-timeline">
+      {{#each experience}}
+        <div class="terminal-card">
+          <header>{{type}}<br/>({{year}})</header>
+          <div>
+            <p>{{name}}<br/>{{place}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
 
 {{/inline}}
 {{> layout}}

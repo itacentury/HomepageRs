@@ -1,12 +1,31 @@
 :root {
-    --background-color: #151515;
-    --font-color: #eaeaea;
-    --invert-font-color: #151515;
-    --primary-color: #1a95e0;
-    --secondary-color: #999;
-    --block-background-color: #1e1e1e;
-    --code-bg-color: #1e1e1e;
-    --progress-bar-background: #444;
-    --progress-bar-fill: #eaeaea;
+  --background-color: #151515;
+  --font-color: #eaeaea;
+  --invert-font-color: #151515;
+  --primary-color: #1a95e0;
+  --secondary-color: #999;
+  --block-background-color: #1e1e1e;
+  --code-bg-color: #1e1e1e;
+  --progress-bar-background: #444;
+  --progress-bar-fill: #eaeaea;
+}
+
+/* timelines */
+.timeline-columns {
+  display: flex;
+  gap: 2rem;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+}
+
+.timeline-wrapper {
+  max-width: 100%;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+@media screen and (min-width: 960px) {
+  .timeline-wrapper {
+    max-width: 25%;
   }
-  
+}
