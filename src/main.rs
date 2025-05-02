@@ -17,16 +17,16 @@ fn index() -> Template {
 fn get_education_vec() -> Vec<serde_json::Value> {
     let education_vec = vec![
         json!({
-            "type": "bachelor's degree",
-            "year": "21/10-25/04",
+            "type": "bachelor of science",
+            "year": "2021-2025",
             "name": "computer science",
-            "place": "@ University of Augsburg",
+            "place": "university of augsburg",
         }),
         json!({
             "type": "vocational training",
-            "year": "18/09-21/01",
+            "year": "2018-2021",
             "name": "IT specialist",
-            "place": "@ ESG Elektroniksystem- und Logistik GmbH",
+            "place": "esg gmbh",
         }),
     ];
 
@@ -37,27 +37,27 @@ fn get_experience_vec() -> Vec<serde_json::Value> {
     let experience_vec = vec![
         json!({ 
             "type": "fulltime employment", 
-            "year": "25/05-...", 
+            "year": "2025-current", 
             "name": "embedded software developer",
-            "place": "@ WashTec Cleaning Technology GmbH",
+            "place": "washtec gmbh",
         }),
         json!({ 
             "type": "working student", 
-            "year": "25/01-25/03", 
+            "year": "2025", 
             "name": "software developer",
-            "place": "@ Hensoldt AG",
+            "place": "hensoldt ag",
         }),
         json!({ 
             "type": "working student", 
-            "year": "21/11–24/12", 
+            "year": "2021–2024", 
             "name": "software developer",
-            "place": "@ ESG Elektroniksystem- und Logistik GmbH",
+            "place": "esg gmbh",
         }),
         json!({ 
             "type": "fulltime employment", 
-            "year": "21/01-21/09", 
+            "year": "2021", 
             "name": "software tester",
-            "place": "@ ESG Elektroniksystem- und Logistik GmbH",
+            "place": "esg gmbh",
         }),
     ];
 
