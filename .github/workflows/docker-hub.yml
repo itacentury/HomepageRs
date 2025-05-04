@@ -9,7 +9,7 @@ on:
     - cron: '0 0 * * *'  # everyday at midnight
 
 jobs:
-  push_to_dockerhub:
+  push_to_docker_hub:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,7 +31,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
       
     - name: Push Docker Image to Docker Hub (amd64)
-      run: docker buildx build --platform linux/amd64 --push -t ${{ secrets.DOCKER_USERNAME }}/homepagers:latest-amd64 .
+      run: docker buildx build --platform linux/amd64 --push -t ${{ secrets.DOCKER_USERNAME }}/homepagers:latest-amd64 ./site/
 
     - name: Push Docker Image to Docker Hub (arm64)
-      run: docker buildx build --platform linux/arm64 --push -t ${{ secrets.DOCKER_USERNAME }}/homepagers:latest-arm64 .
+      run: docker buildx build --platform linux/arm64 --push -t ${{ secrets.DOCKER_USERNAME }}/homepagers:latest-arm64 ./site/
