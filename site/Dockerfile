@@ -1,7 +1,10 @@
 FROM alpine:latest AS nav-pkg
-RUN apk add unzip wget curl
-RUN mkdir /pkg/ ; \
-  curl https://github.com/itacentury/HomepageRs/releases/download/pkg/pkg.zip | tar xvzf - -C /pkg  
+RUN apk add --no-cache unzip curl
+RUN mkdir /pkg \
+    && curl -L https://github.com/itacentury/HomepageRs/releases/download/pkg/pkg.zip \
+         -o /tmp/pkg.zip \
+    && unzip /tmp/pkg.zip -d /pkg \
+    && rm /tmp/pkg.zip
 
 FROM rust:1.86.0
 
