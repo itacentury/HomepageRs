@@ -45,8 +45,8 @@ jobs:
         push: true
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/homepagers:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+        # cache-from: type=gha
+        # cache-to: type=gha,mode=max
         # cache-from: |
         #   type=registry,ref=${{ secrets.DOCKER_USERNAME }}/homepagers:cache
         # cache-to: |
