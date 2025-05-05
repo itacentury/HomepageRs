@@ -12,7 +12,9 @@ FROM rust:1.86.0 AS builder
 WORKDIR /app
 COPY Cargo.toml Cargo.lock ./
 
-RUN cargo fetch
+RUN mkdir src \
+    && echo "fn main() {}" > src/main.rs \
+    && cargo fetch
 
 COPY . .
 RUN cargo build --release
