@@ -28,4 +28,4 @@ WORKDIR /app
 COPY --from=builder /app/target/release/site ./site
 COPY --from=nav-pkg /pkg/ /static/pkg/
 
-CMD ["./site"]
+CMD ["cargo", "run", "--release"]
