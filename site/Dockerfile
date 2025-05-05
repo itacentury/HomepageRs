@@ -35,8 +35,8 @@ ENV ROCKET_PORT=8000
 
 WORKDIR /app
 RUN ls -lah
-COPY --from=builder /app/target/release/site ./site
+COPY --from=builder /app/target/release/HomepageRs ./HomepageRs
 RUN ls -lah
 COPY --from=nav-pkg /pkg/ /static/pkg/
 
-CMD ["cargo", "run", "--release"]
+CMD ["./HomepageRs"]
