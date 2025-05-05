@@ -22,7 +22,11 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry \
 
 RUN rm -rf src
 COPY . .
-RUN cargo build --release
+
+RUN --mount=type=cache,target=/usr/local/cargo/registry \
+    --mount=type=cache,target=/usr/local/cargo/git \
+    --mount=type=cache,target=/app/target \
+    cargo build --release
 
 FROM rust:1.86.0
 
