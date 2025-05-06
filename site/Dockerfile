@@ -17,4 +17,4 @@ COPY  --from=nav-pkg /pkg/* /app/static/pkg/
 
 RUN cargo build --release
 
-CMD ["cargo", "run", "--release"]
+CMD ["./target/release/site"]
