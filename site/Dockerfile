@@ -6,14 +6,14 @@ RUN mkdir /pkg \
     && unzip /tmp/pkg.zip -d /pkg \
     && rm /tmp/pkg.zip
 
-FROM rust:1.86.0
+FROM rust:1.86.0-slim-bookworm
 
 ENV ROCKET_ADDRESS=0.0.0.0
 ENV ROCKET_PORT=8000
 
 WORKDIR /app
 COPY . .
-COPY  --from=nav-pkg /pkg/ /static/pkg/
+COPY  --from=nav-pkg /pkg/* /app/static/pkg/
 
 RUN cargo build --release
 
