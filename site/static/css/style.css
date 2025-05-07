@@ -50,42 +50,16 @@ nav a.active {
   gap: 1.5rem;
 }
 
-/* card */
-.card-columns {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  align-items: flex-start;
+/* terminal-prompt */
+.terminal-prompt::before {
+  content: "$ ";
 }
 
-/* terminal-card */
-.terminal-card {
-  border: none;
-  flex: 1 1 30%;
-  max-width: 30%;
-  min-width: 280px;
-  box-sizing: border-box;
-}
-.terminal-card h2 {
-  font-size: 1.1em;
-  margin-bottom: 0.3em;
-  font-weight: bold;
+/* links */
+a {
+  text-shadow: none;
 }
 
-/* blockquote */
-blockquote {
-  margin: 0;
-  padding-left: 1em;
-  color: var(--font-color);
-}
-
-/* block-card */
-.block-card {
-  padding: var(--global-space);
-  border-bottom: 1px solid var(--secondary-color);
-}
-.block-card:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+.list-mb:not(:last-child) {
+  margin-bottom: 1.5em;
 }

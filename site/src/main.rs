@@ -10,6 +10,7 @@ fn index() -> Template {
     Template::render("index", context! { 
         education: get_education_vec(),
         experience: get_experience_vec(),
+        links: get_links_vec(),
     })
 }
 
@@ -61,6 +62,28 @@ fn get_experience_vec() -> Vec<serde_json::Value> {
     ];
 
     experience_vec
+}
+
+fn get_links_vec() -> Vec<serde_json::Value> {
+    let links_vec = vec![
+        json!({
+            "name": "github",
+            "link": "https://github.com/itacentury/",
+            "linkname": "github.com/itacentury",
+        }),
+        json!({
+            "name": "linkedin",
+            "link": "https://www.linkedin.com/in/hofl/",
+            "linkname": "linkedin.com/in/hofl",
+        }),
+        json!({
+            "name": "youtube",
+            "link": "https://www.youtube.com/@Zuckerschlecken",
+            "linkname": "youtube.com/@Zuckerschlecken",
+        }),
+    ];
+
+    links_vec
 }
 
 #[catch(500)]
