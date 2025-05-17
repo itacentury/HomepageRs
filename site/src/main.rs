@@ -1,17 +1,24 @@
+use rocket::{
+    Request,
+    fs::{FileServer, relative},
+};
 use rocket_dyn_templates::{Template, context};
-use rocket::{fs::{relative, FileServer}, Request};
 
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
 pub mod content;
 
 #[get("/")]
 fn index() -> Template {
-    Template::render("index", context! { 
-        education: content::get_education_vec(),
-        experience: content::get_experience_vec(),
-        links: content::get_links_vec(),
-    })
+    Template::render(
+        "index",
+        context! {
+            education: content::get_education_vec(),
+            experience: content::get_experience_vec(),
+            links: content::get_links_vec(),
+        },
+    )
 }
 
 #[catch(500)]
@@ -21,9 +28,12 @@ fn internal_error() -> Template {
 
 #[catch(404)]
 fn not_found(req: &Request) -> Template {
-    Template::render("error/404", context! {
-        uri: req.uri()
-    })
+    Template::render(
+        "error/404",
+        context! {
+            uri: req.uri()
+        },
+    )
 }
 
 #[launch]

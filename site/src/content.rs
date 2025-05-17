@@ -21,27 +21,27 @@ pub fn get_education_vec() -> Vec<serde_json::Value> {
 
 pub fn get_experience_vec() -> Vec<serde_json::Value> {
     let experience_vec = vec![
-        json!({ 
-            "type": "fulltime employment", 
-            "year": "2025-current", 
+        json!({
+            "type": "fulltime employment",
+            "year": "2025-current",
             "name": "embedded software developer",
             "place": "washtec gmbh",
         }),
-        json!({ 
-            "type": "working student", 
-            "year": "2025", 
+        json!({
+            "type": "working student",
+            "year": "2025",
             "name": "software developer",
             "place": "hensoldt ag",
         }),
-        json!({ 
-            "type": "working student", 
-            "year": "2021–2024", 
+        json!({
+            "type": "working student",
+            "year": "2021–2024",
             "name": "software developer",
             "place": "esg gmbh",
         }),
-        json!({ 
-            "type": "fulltime employment", 
-            "year": "2021", 
+        json!({
+            "type": "fulltime employment",
+            "year": "2021",
             "name": "software tester",
             "place": "esg gmbh",
         }),

@@ -1,6 +1,6 @@
-use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
-use web_sys::{window, Element, NodeList};
+use wasm_bindgen::prelude::*;
+use web_sys::{Element, NodeList, window};
 
 #[wasm_bindgen(start)]
 pub fn start() -> Result<(), JsValue> {
@@ -14,7 +14,9 @@ pub fn start() -> Result<(), JsValue> {
 
     // Grab all <a> tags within <nav> and all sections by class
     let nav_links: NodeList = nav.query_selector_all("a")?.dyn_into()?;
-    let sections: NodeList = document.query_selector_all(".content-section")?.dyn_into()?;
+    let sections: NodeList = document
+        .query_selector_all(".content-section")?
+        .dyn_into()?;
 
     for i in 0..nav_links.length() {
         // Retrieve and clone each link element to avoid moving it into the closure
@@ -61,8 +63,7 @@ pub fn start() -> Result<(), JsValue> {
         }) as Box<dyn FnMut(_)>);
 
         // Attach the closure as a click listener and leak it to keep it alive
-        link_el
-            .add_event_listener_with_callback("click", closure.as_ref().unchecked_ref())?;
+        link_el.add_event_listener_with_callback("click", closure.as_ref().unchecked_ref())?;
         closure.forget(); // Prevent closure from being dropped
     }
 
