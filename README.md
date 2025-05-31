@@ -1,7 +1,7 @@
 # HomepageRs
 
-[![Rust CI](https://github.com/itacentury/HomepageRs/actions/workflows/rust-ci.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/rust-ci.yml)
-[![Docker Image](https://github.com/itacentury/HomepageRs/actions/workflows/docker-image.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/docker-image.yml)
+[![Rust lint, build & test](https://github.com/itacentury/HomepageRs/actions/workflows/rust-lint-build-test.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/rust-lint-build-test.yml)
+[![Docker build & push](https://github.com/itacentury/HomepageRs/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/docker-build-push.yml)
 
 HomepageRs is a lightweight web project built with [Rocket](https://rocket.rs) in Rust.
 
