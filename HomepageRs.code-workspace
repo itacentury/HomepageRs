@@ -25,4 +25,39 @@
             "davidanson.vscode-markdownlint",
         ]
     },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "rust: cargo clean",
+                "type": "shell",
+                "command": "cargo",
+                "args": [
+                    "clean",
+                ],
+                "group": {
+                    "kind": "build",
+                    "isDefault": false,
+                },
+                "problemMatcher": [],
+            },
+            {
+                "label": "rust: cargo watch",
+                "type": "shell",
+                "command": "cargo",
+                "args": [
+                    "watch",
+                    "-w",
+                    "site",
+                    "-s",
+                    "'cd nav && wasm-pack build --target web --out-dir ../site/static/pkg && cd ../site && cargo run --release'",
+                ],
+                "group": {
+                    "kind": "build",
+                    "isDefault": false,
+                },
+                "problemMatcher": [],
+            },
+        ]
+    }
 }
