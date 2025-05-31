@@ -1,0 +1,28 @@
+<div class="background">
+  <div class="prompt-row">
+    <div class="terminal-prompt" id="project-name">
+      placeholder
+    </div>
+    <button class="link-button-inline">
+      <i class="fas fa-external-link-alt"></i>
+    </button>
+  </div>
+
+  <div class="slider-container">
+    <div class="slider">
+      {{#each projects}}
+        <div class="slide" data-name="{{name}}" data-link="{{link}}">
+          <img src="{{image}}" alt="{{name}}" />
+        </div>
+      {{/each}}
+    </div>
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
+  </div>
+  <div class="dots-container">
+    {{#each projects}}
+      <span class="dot" data-index="{{@index}}"></span>
+    {{/each}}
+  </div>
+</div>

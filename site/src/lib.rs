@@ -14,6 +14,7 @@ pub fn index() -> Template {
     Template::render(
         "index",
         context! {
+            projects: content::get_projects_vec(),
             education: content::get_education_vec(),
             experience: content::get_experience_vec(),
             links: content::get_links_vec(),

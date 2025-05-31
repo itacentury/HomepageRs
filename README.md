@@ -66,3 +66,4 @@ Before building and running this project, make sure the following tools are inst
 ## Notes
 
 - Be sure to re-run wasm-pack build whenever you update the nav code.
+- Repository preview images have been generated with [Github Social Image Generator](https://www.bannerbear.com/demos/github-social-preview-generator-tool/)

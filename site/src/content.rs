@@ -1,5 +1,32 @@
 use serde_json::json;
 
+pub fn get_projects_vec() -> Vec<serde_json::Value> {
+    let projects_vec = vec![
+        json!({
+            "name": "HomepageRs",
+            "link": "https://github.com/itacentury/HomepageRs",
+            "image": "/images/homepagers-preview.jpg",
+        }),
+        json!({
+            "name": "CenturyPackageBO1",
+            "link": "https://github.com/itacentury/CenturyPackageBO1",
+            "image": "/images/centurypackagebo1-preview.jpg",
+        }),
+        json!({
+            "name": "T5GSCLoader",
+            "link": "https://github.com/itacentury/T5GSCLoader",
+            "image": "/images/t5gscloader-preview.jpg",
+        }),
+        json!({
+            "name": "SudokuPy",
+            "link": "https://github.com/itacentury/SudokuPy",
+            "image": "/images/sudokupy-preview.jpg",
+        }),
+    ];
+
+    projects_vec
+}
+
 pub fn get_education_vec() -> Vec<serde_json::Value> {
     let education_vec = vec![
         json!({
@@ -23,7 +50,7 @@ pub fn get_experience_vec() -> Vec<serde_json::Value> {
     let experience_vec = vec![
         json!({
             "type": "Fulltime Employment",
-            "year": "2025-Current",
+            "year": "2025-Now",
             "name": "Embedded Software Developer",
             "place": "WashTec AG",
         }),
