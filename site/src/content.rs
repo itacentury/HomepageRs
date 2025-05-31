@@ -3,16 +3,16 @@ use serde_json::json;
 pub fn get_education_vec() -> Vec<serde_json::Value> {
     let education_vec = vec![
         json!({
-            "type": "bachelor of science",
+            "type": "Bachelor of Science",
             "year": "2021-2025",
-            "name": "computer science",
-            "place": "university of augsburg",
+            "name": "Computer Science",
+            "place": "University of Augsburg",
         }),
         json!({
-            "type": "vocational training",
+            "type": "Vocational Training",
             "year": "2018-2021",
-            "name": "IT specialist",
-            "place": "esg gmbh",
+            "name": "IT Specialist",
+            "place": "ESG GmbH",
         }),
     ];
 
@@ -22,28 +22,28 @@ pub fn get_education_vec() -> Vec<serde_json::Value> {
 pub fn get_experience_vec() -> Vec<serde_json::Value> {
     let experience_vec = vec![
         json!({
-            "type": "fulltime employment",
-            "year": "2025-current",
-            "name": "embedded software developer",
-            "place": "washtec gmbh",
+            "type": "Fulltime Employment",
+            "year": "2025-Current",
+            "name": "Embedded Software Developer",
+            "place": "WashTec AG",
         }),
         json!({
-            "type": "working student",
+            "type": "Working Student",
             "year": "2025",
-            "name": "software developer",
-            "place": "hensoldt ag",
+            "name": "Software Developer",
+            "place": "Hensoldt AG",
         }),
         json!({
-            "type": "working student",
+            "type": "Working Student",
             "year": "2021–2024",
-            "name": "software developer",
-            "place": "esg gmbh",
+            "name": "Software Developer",
+            "place": "ESG GmbH",
         }),
         json!({
-            "type": "fulltime employment",
+            "type": "Fulltime Employment",
             "year": "2021",
-            "name": "software tester",
-            "place": "esg gmbh",
+            "name": "Software Tester",
+            "place": "ESG GmbH",
         }),
     ];
 
@@ -53,17 +53,17 @@ pub fn get_experience_vec() -> Vec<serde_json::Value> {
 pub fn get_links_vec() -> Vec<serde_json::Value> {
     let links_vec = vec![
         json!({
-            "name": "github",
+            "name": "GitHub",
             "link": "https://github.com/itacentury/",
             "linkname": "github.com/itacentury",
         }),
         json!({
-            "name": "linkedin",
+            "name": "Linkedin",
             "link": "https://www.linkedin.com/in/hofl/",
             "linkname": "linkedin.com/in/hofl",
         }),
         json!({
-            "name": "youtube",
+            "name": "YouTube",
             "link": "https://www.youtube.com/@Zuckerschlecken",
             "linkname": "youtube.com/@Zuckerschlecken",
         }),
