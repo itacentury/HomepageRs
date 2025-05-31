@@ -36,7 +36,7 @@ pub fn get_experience_vec() -> Vec<serde_json::Value> {
         json!({
             "type": "Working Student",
             "year": "2021–2024",
-            "name": "Software Developer",
+            "name": "Software Tester and Developer",
             "place": "ESG GmbH",
         }),
         json!({
