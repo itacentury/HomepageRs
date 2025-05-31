@@ -13,6 +13,9 @@
         "[rust]": {
             "editor.defaultFormatter": "rust-lang.rust-analyzer",
         },
+        "[handlebars]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
         "[markdown]": {
             "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
         },
@@ -23,6 +26,7 @@
             "tamasfe.even-better-toml",
             "1yib.rust-bundle",
             "davidanson.vscode-markdownlint",
+            "esbenp.prettier-vscode",
         ]
     },
     "tasks": {
