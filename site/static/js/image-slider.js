@@ -6,6 +6,7 @@ const linkBtn = document.querySelector(".link-button-inline");
 const dots = document.querySelectorAll(".dot");
 const sliderContainer = document.querySelector(".slider-container");
 const projectName = document.getElementById("project-name");
+const projectLink = document.getElementById("projects-link");
 
 let currentIndex = 0;
 
@@ -39,11 +40,23 @@ function showSlides(index) {
 }
 
 function nextSlide() {
+  if (!isProjectSelected()) {
+    return;
+  }
+
   showSlides(currentIndex + 1);
 }
 
 function prevSlide() {
+  if (!isProjectSelected()) {
+    return;
+  }
+
   showSlides(currentIndex - 1);
+}
+
+function isProjectSelected() {
+  return projectLink.className === "active";
 }
 
 function openLink() {
