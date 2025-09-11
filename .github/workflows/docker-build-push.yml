@@ -6,7 +6,7 @@ on:
     types:
       - completed
   schedule:
-    - cron: "0 0 * * *" # everyday at midnight
+    - cron: "0 0 * * 0"  # every Sunday at midnight
 
 jobs:
   docker:
