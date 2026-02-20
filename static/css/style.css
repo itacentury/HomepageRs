@@ -40,10 +40,10 @@ body {
 
 /* navigation */
 nav a {
-  text-shadow: 0 0 10px #C8C8C8;
+  text-shadow: 0 0 5px #C8C8C8;
 }
 nav a.active {
-  text-shadow: 0 0 5px #C8C8C8;
+  text-shadow: 0 0 10px #C8C8C8;
 }
 .menu-horizontal ul {
   display: flex;

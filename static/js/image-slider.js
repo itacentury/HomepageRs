@@ -56,7 +56,7 @@ function prevSlide() {
 }
 
 function isProjectSelected() {
-  return projectLink.className === "active";
+  return projectLink.classList.contains("active");
 }
 
 function openLink() {
