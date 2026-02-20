@@ -33,18 +33,21 @@ pub async fn index(hb: web::Data<Handlebars<'_>>) -> HttpResponse {
     let body = hb.render(
         "index",
         &json!({
-            "projects": content::get_projects_vec(),
-            "education": content::get_education_vec(),
-            "experience": content::get_experience_vec(),
-            "links": content::get_links_vec(),
+            "projects": content::get_projects(),
+            "education": content::get_education(),
+            "experience": content::get_experience(),
+            "links": content::get_links(),
         }),
     );
 
     match body {
         Ok(html) => HttpResponse::Ok().content_type("text/html").body(html),
-        Err(_) => HttpResponse::InternalServerError()
-            .content_type("text/html")
-            .body(hb.render("error/500", &json!({})).unwrap_or_default()),
+        Err(e) => {
+            eprintln!("Template render error: {e}");
+            HttpResponse::InternalServerError()
+                .content_type("text/html")
+                .body(hb.render("error/500", &json!({})).unwrap_or_default())
+        }
     }
 }
 

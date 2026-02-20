@@ -1,100 +1,130 @@
-use serde_json::json;
+use serde::Serialize;
 
-pub fn get_projects_vec() -> Vec<serde_json::Value> {
-    let projects_vec = vec![
-        json!({
-            "name": "HomepageRs",
-            "link": "https://github.com/itacentury/HomepageRs",
-            "image": "/images/homepagers-preview.jpg",
-        }),
-        json!({
-            "name": "CenturyPackageBO1",
-            "link": "https://github.com/itacentury/CenturyPackageBO1",
-            "image": "/images/centurypackagebo1-preview.jpg",
-        }),
-        json!({
-            "name": "T5GSCLoader",
-            "link": "https://github.com/itacentury/T5GSCLoader",
-            "image": "/images/t5gscloader-preview.jpg",
-        }),
-        json!({
-            "name": "SudokuPy",
-            "link": "https://github.com/itacentury/SudokuPy",
-            "image": "/images/sudokupy-preview.jpg",
-        }),
-    ];
-
-    projects_vec
+/// A portfolio project with a name, link, and preview image.
+#[derive(Serialize)]
+pub struct Project {
+    pub name: &'static str,
+    pub link: &'static str,
+    pub image: &'static str,
 }
 
-pub fn get_education_vec() -> Vec<serde_json::Value> {
-    let education_vec = vec![
-        json!({
-            "type": "Bachelor of Science",
-            "year": "2021-2025",
-            "name": "Computer Science",
-            "place": "University of Augsburg",
-        }),
-        json!({
-            "type": "Vocational Training",
-            "year": "2018-2021",
-            "name": "IT Specialist",
-            "place": "ESG GmbH",
-        }),
-    ];
-
-    education_vec
+/// An entry in the education timeline.
+#[derive(Serialize)]
+pub struct Education {
+    pub r#type: &'static str,
+    pub year: &'static str,
+    pub name: &'static str,
+    pub place: &'static str,
 }
 
-pub fn get_experience_vec() -> Vec<serde_json::Value> {
-    let experience_vec = vec![
-        json!({
-            "type": "Fulltime Employment",
-            "year": "2025-Now",
-            "name": "Embedded Software Developer",
-            "place": "WashTec AG",
-        }),
-        json!({
-            "type": "Working Student",
-            "year": "2025",
-            "name": "Software Developer",
-            "place": "Hensoldt AG",
-        }),
-        json!({
-            "type": "Working Student",
-            "year": "2021–2024",
-            "name": "Software Tester and Developer",
-            "place": "ESG GmbH",
-        }),
-        json!({
-            "type": "Fulltime Employment",
-            "year": "2021",
-            "name": "Software Tester",
-            "place": "ESG GmbH",
-        }),
-    ];
-
-    experience_vec
+/// An entry in the work experience timeline.
+#[derive(Serialize)]
+pub struct Experience {
+    pub r#type: &'static str,
+    pub year: &'static str,
+    pub name: &'static str,
+    pub place: &'static str,
 }
 
-pub fn get_links_vec() -> Vec<serde_json::Value> {
-    let links_vec = vec![
-        json!({
-            "name": "GitHub",
-            "link": "https://github.com/itacentury/",
-            "linkname": "github.com/itacentury",
-        }),
-        json!({
-            "name": "Linkedin",
-            "link": "https://www.linkedin.com/in/hofl/",
-            "linkname": "linkedin.com/in/hofl",
-        }),
-        json!({
-            "name": "YouTube",
-            "link": "https://www.youtube.com/@Zuckerschlecken",
-            "linkname": "youtube.com/@Zuckerschlecken",
-        }),
-    ];
+/// A social or contact link.
+#[derive(Serialize)]
+pub struct Link {
+    pub name: &'static str,
+    pub link: &'static str,
+    pub linkname: &'static str,
+}
 
-    links_vec
+/// Return all portfolio projects.
+pub fn get_projects() -> Vec<Project> {
+    vec![
+        Project {
+            name: "HomepageRs",
+            link: "https://github.com/itacentury/HomepageRs",
+            image: "/images/homepagers-preview.jpg",
+        },
+        Project {
+            name: "CenturyPackageBO1",
+            link: "https://github.com/itacentury/CenturyPackageBO1",
+            image: "/images/centurypackagebo1-preview.jpg",
+        },
+        Project {
+            name: "T5GSCLoader",
+            link: "https://github.com/itacentury/T5GSCLoader",
+            image: "/images/t5gscloader-preview.jpg",
+        },
+        Project {
+            name: "SudokuPy",
+            link: "https://github.com/itacentury/SudokuPy",
+            image: "/images/sudokupy-preview.jpg",
+        },
+    ]
+}
+
+/// Return all education entries.
+pub fn get_education() -> Vec<Education> {
+    vec![
+        Education {
+            r#type: "Bachelor of Science",
+            year: "2021-2025",
+            name: "Computer Science",
+            place: "University of Augsburg",
+        },
+        Education {
+            r#type: "Vocational Training",
+            year: "2018-2021",
+            name: "IT Specialist",
+            place: "ESG GmbH",
+        },
+    ]
+}
+
+/// Return all work experience entries.
+pub fn get_experience() -> Vec<Experience> {
+    vec![
+        Experience {
+            r#type: "Fulltime Employment",
+            year: "2025-Now",
+            name: "Embedded Software Developer",
+            place: "WashTec AG",
+        },
+        Experience {
+            r#type: "Working Student",
+            year: "2025",
+            name: "Software Developer",
+            place: "Hensoldt AG",
+        },
+        Experience {
+            r#type: "Working Student",
+            year: "2021-2024",
+            name: "Software Tester and Developer",
+            place: "ESG GmbH",
+        },
+        Experience {
+            r#type: "Fulltime Employment",
+            year: "2021",
+            name: "Software Tester",
+            place: "ESG GmbH",
+        },
+    ]
+}
+
+/// Return all social/contact links.
+pub fn get_links() -> Vec<Link> {
+    vec![
+        Link {
+            name: "GitHub",
+            link: "https://github.com/itacentury/",
+            linkname: "github.com/itacentury",
+        },
+        Link {
+            name: "Linkedin",
+            link: "https://www.linkedin.com/in/hofl/",
+            linkname: "linkedin.com/in/hofl",
+        },
+        Link {
+            name: "YouTube",
+            link: "https://www.youtube.com/@Zuckerschlecken",
+            linkname: "youtube.com/@Zuckerschlecken",
+        },
+    ]
 }
