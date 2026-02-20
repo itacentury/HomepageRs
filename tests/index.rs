@@ -1,24 +1,41 @@
-use rocket::form::validate::Contains;
-use rocket::http::{ContentType, Status};
-use rocket::local::blocking::Client;
-use rocket::uri;
-use site::rocket;
+use actix_web::{App, test, web};
 
-#[test]
-fn test_index_status() {
-    let client = Client::tracked(rocket()).expect("valid rocket instance");
-    let response = client.get(uri!(site::index)).dispatch();
-    assert_eq!(response.status(), Status::Ok);
-    assert_eq!(response.content_type(), Some(ContentType::HTML));
+fn create_app_config() -> web::Data<handlebars::Handlebars<'static>> {
+    web::Data::new(site::create_handlebars())
 }
 
-#[test]
-fn test_index_sections() {
-    let client = Client::tracked(rocket()).expect("valid rocket instance");
-    let response = client.get(uri!(site::index)).dispatch();
-    let result_string = response.into_string().unwrap();
-    assert!(result_string.contains("Projects"));
-    assert!(result_string.contains("Experience"));
-    assert!(result_string.contains("Education"));
-    assert!(result_string.contains("Links"));
+#[actix_web::test]
+async fn test_index_status() {
+    let hb = create_app_config();
+    let app = test::init_service(
+        App::new().app_data(hb).configure(site::app_config),
+    )
+    .await;
+
+    let req = test::TestRequest::get().uri("/").to_request();
+    let resp = test::call_service(&app, req).await;
+
+    assert_eq!(resp.status(), 200);
+    assert_eq!(
+        resp.headers().get("content-type").unwrap(),
+        "text/html"
+    );
+}
+
+#[actix_web::test]
+async fn test_index_sections() {
+    let hb = create_app_config();
+    let app = test::init_service(
+        App::new().app_data(hb).configure(site::app_config),
+    )
+    .await;
+
+    let req = test::TestRequest::get().uri("/").to_request();
+    let resp = test::call_service(&app, req).await;
+    let body = String::from_utf8(test::read_body(resp).await.to_vec()).unwrap();
+
+    assert!(body.contains("Projects"));
+    assert!(body.contains("Experience"));
+    assert!(body.contains("Education"));
+    assert!(body.contains("Links"));
 }

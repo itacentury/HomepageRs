@@ -17,9 +17,6 @@ RUN cargo build --release
 FROM debian:12-slim
 WORKDIR /site
 
-ENV ROCKET_ADDRESS=0.0.0.0
-ENV ROCKET_PORT=8000
-
 COPY --from=builder /site/target/release/site ./site
 COPY --from=builder /site/static ./static
 COPY --from=builder /site/templates ./templates
