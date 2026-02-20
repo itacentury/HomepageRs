@@ -13,24 +13,9 @@
         "[rust]": {
             "editor.defaultFormatter": "rust-lang.rust-analyzer",
         },
-        "[handlebars]": {
+        "[handlebars][javascript][markdown]": {
             "editor.defaultFormatter": "esbenp.prettier-vscode",
         },
-        "[javascript]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode",
-        },
-        "[markdown]": {
-            "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
-        },
-    },
-    "extensions": {
-        "recommendations": [
-            "fill-labs.dependi",
-            "tamasfe.even-better-toml",
-            "1yib.rust-bundle",
-            "davidanson.vscode-markdownlint",
-            "esbenp.prettier-vscode",
-        ]
     },
     "tasks": {
         "version": "2.0.0",
@@ -64,5 +49,14 @@
                 "problemMatcher": [],
             },
         ]
-    }
+    },
+    "extensions": {
+        "recommendations": [
+            "fill-labs.dependi",
+            "tamasfe.even-better-toml",
+            "rust-lang.rust-analyzer",
+            "dustypomerleau.rust-syntax",
+            "esbenp.prettier-vscode",
+        ]
+    },
 }
