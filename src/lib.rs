@@ -51,6 +51,11 @@ pub async fn index(hb: web::Data<Handlebars<'_>>) -> HttpResponse {
     }
 }
 
+/// Return a simple health check response for container orchestration.
+pub async fn health() -> HttpResponse {
+    HttpResponse::Ok().finish()
+}
+
 /// Render a 404 page for unmatched routes.
 pub async fn not_found(req: HttpRequest, hb: web::Data<Handlebars<'_>>) -> HttpResponse {
     let body = hb
@@ -64,6 +69,7 @@ pub async fn not_found(req: HttpRequest, hb: web::Data<Handlebars<'_>>) -> HttpR
 /// Configure actix-web app routes and services.
 pub fn app_config(cfg: &mut web::ServiceConfig) {
     cfg.route("/", web::get().to(index))
+        .route("/health", web::get().to(health))
         .service(actix_files::Files::new("/", "./static"))
         .default_service(web::route().to(not_found));
 }
