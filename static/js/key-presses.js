@@ -1,21 +1,32 @@
-const NAVIGATION_KEYS = {
-  ArrowLeft: { action: "prevSlide" },
-  ArrowRight: { action: "nextSlide" },
-  1: { elementId: "projects-link" },
-  2: { elementId: "experience-link" },
-  3: { elementId: "education-link" },
-  4: { elementId: "links-link" },
-};
+const NAV_LINK_IDS = [
+  "projects-link",
+  "experience-link",
+  "education-link",
+  "links-link",
+];
+
+function cycleNav(direction) {
+  const currentIndex = NAV_LINK_IDS.findIndex((id) => {
+    return document.getElementById(id)?.classList.contains("active");
+  });
+
+  const nextIndex =
+    (currentIndex + direction + NAV_LINK_IDS.length) % NAV_LINK_IDS.length;
+  document.getElementById(NAV_LINK_IDS[nextIndex])?.click();
+}
 
 document.addEventListener("keydown", function (event) {
-  const config = NAVIGATION_KEYS[event.key];
-  if (!config) return;
+  if (event.key === "Tab") {
+    event.preventDefault();
+    cycleNav(event.shiftKey ? -1 : 1);
+    return;
+  }
 
-  event.preventDefault();
-
-  if (config.action) {
-    window[config.action]?.();
-  } else if (config.elementId) {
-    document.getElementById(config.elementId)?.click();
+  if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    window.prevSlide?.();
+  } else if (event.key === "ArrowRight") {
+    event.preventDefault();
+    window.nextSlide?.();
   }
 });
