@@ -3,7 +3,7 @@
 [![Rust lint, build & test](https://github.com/itacentury/HomepageRs/actions/workflows/rust-lint-build-test.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/rust-lint-build-test.yml)
 [![Docker build & push](https://github.com/itacentury/HomepageRs/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/docker-build-push.yml)
 
-HomepageRs is a lightweight web project built with [Rocket](https://rocket.rs) in Rust.
+HomepageRs is a lightweight personal portfolio website built with [Actix-web](https://actix.rs) in Rust.
 
 ## Prerequisites
 
@@ -17,29 +17,29 @@ Before building and running this project, make sure the following tools are inst
 
    Some platforms (like Linux) require development tools and dependencies.
 
-3. **cargo-watch** (optional)
+3. **bacon** (optional)
 
-    For automatically rebuilding and restarting the server on file changes:
+   For automatically rebuilding and restarting the server on file changes:
 
-    ```bash
-    cargo install cargo-watch
-    ```
+   ```bash
+   cargo install bacon
+   ```
 
 ## Build & Run
 
 - To start the server:
 
-    ```bash
-    cargo run --release
-    ```
+  ```bash
+  cargo run --release
+  ```
 
-    This starts the Rocket server and serves the frontend at <http://localhost:8000>.
+  This starts the Actix-web server and serves the frontend at <http://localhost:8000>.
 
 - For automatic rebuilds during development:
 
-    ```bash
-    cargo watch -s 'cargo run --release'
-    ```
+  ```bash
+  bacon run-long
+  ```
 
 ## Notes
 
