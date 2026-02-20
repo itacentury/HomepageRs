@@ -31,22 +31,18 @@
                     "kind": "build",
                     "isDefault": false,
                 },
-                "problemMatcher": [],
             },
             {
-                "label": "rust: cargo watch",
+                "label": "rust: bacon",
                 "type": "shell",
-                "command": "cargo",
+                "command": "bacon",
                 "args": [
-                    "watch",
-                    "-s",
-                    "cargo run --release",
+                    "run-long",
                 ],
                 "group": {
                     "kind": "build",
                     "isDefault": false,
                 },
-                "problemMatcher": [],
             },
         ]
     },
