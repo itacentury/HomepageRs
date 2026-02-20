@@ -17,15 +17,7 @@ Before building and running this project, make sure the following tools are inst
 
    Some platforms (like Linux) require development tools and dependencies.
 
-3. **wasm-pack**
-
-   Used to compile the WebAssembly module:
-
-   ```bash
-   cargo install wasm-pack
-    ```
-
-4. **cargo-watch**
+3. **cargo-watch** (optional)
 
     For automatically rebuilding and restarting the server on file changes:
 
@@ -35,35 +27,20 @@ Before building and running this project, make sure the following tools are inst
 
 ## Build & Run
 
-1. Build the WebAssembly
-
-    Navigate to the nav directory and compile it for the web:
+- To start the server:
 
     ```bash
-    wasm-pack build --target web --out-dir ../site/static/pkg
+    cargo run --release
     ```
 
-    This outputs the compiled WebAssembly and bindings to the site/static/pkg folder, where the Rocket site can serve it.
+    This starts the Rocket server and serves the frontend at <http://localhost:8000>.
 
-2. Run the Rocket site
+- For automatic rebuilds during development:
 
-    - To manually start the backend server, navigate to the `site` directory and run:
-
-        ```bash
-        cargo run --release
-        ```
-
-        This starts the Rocket server and serves the frontend at <http://localhost:8000>.
-
-    - For automatic rebuilds during development, run the following command from the root of the project:
-
-        ```bash
-        cargo watch -w site -s 'cd nav && wasm-pack build --target web --out-dir ../site/static/pkg && cd ../site && cargo run --release'
-        ```
-
-        This watches changes in the site directory, rebuilds WebAssembly, and restarts the Rocket server automatically.
+    ```bash
+    cargo watch -s 'cargo run --release'
+    ```
 
 ## Notes
 
-- Be sure to re-run wasm-pack build whenever you update the nav code.
 - Repository preview images have been generated with [Github Social Image Generator](https://www.bannerbear.com/demos/github-social-preview-generator-tool/)
