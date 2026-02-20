@@ -12,9 +12,9 @@
 
 body {
   font-size: 16px;
-  margin-left: 2rem;
   max-width: 65%;
   margin: 0 auto;
+  padding: 0 1rem;
   text-shadow: 0 0 5px #C8C8C8;
 }
 
@@ -22,6 +22,7 @@ body {
 .ascii-art {
   font-family: monospace;
   white-space: pre;
+  overflow-x: auto;
 }
 
 /* content-box */
@@ -47,6 +48,7 @@ nav a.active {
 .menu-horizontal ul {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 1.5rem;
 }
 
@@ -77,7 +79,7 @@ a {
 
 .slider-container {
   position: relative;
-  width: 50%;
+  width: 80%;
   max-width: 800px;
   overflow: hidden;
   border-radius: 10px;
@@ -173,4 +175,57 @@ a {
 
 .link-button-inline:hover {
   color: #00bfff;
+}
+
+/* ── Responsive ─────────────────────────────── */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  body {
+    max-width: 85%;
+  }
+
+  .ascii-art {
+    font-size: 0.55rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  body {
+    max-width: 100%;
+    padding: 0 0.75rem;
+  }
+
+  .ascii-art {
+    font-size: 0.3rem;
+  }
+
+  .content-box {
+    padding: 0.75rem;
+    border-left: none;
+    border-right: none;
+  }
+
+  .menu-horizontal ul {
+    gap: 1rem;
+  }
+
+  .slider-container {
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .slide img {
+    border-radius: 6px;
+  }
+
+  .dot {
+    height: 12px;
+    width: 12px;
+  }
+
+  .dots-container {
+    margin-top: 12px;
+  }
 }
