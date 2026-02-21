@@ -32,6 +32,7 @@
 html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -71,27 +72,64 @@ ul {
 
 /* ── Hero ─────────────────────────────────── */
 .hero {
-  padding: 3rem 0 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 0 1.5rem;
   text-align: center;
+  overflow: visible;
 }
 
 .hero__name {
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Space Grotesk", var(--font-body);
+  font-weight: 700;
+  font-size: clamp(3rem, 13vw, 10rem);
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  opacity: 0.25;
+  user-select: none;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: hero-bg-in 1s ease-out both;
 }
 
 .hero__subtitle {
+  position: relative;
   font-family: var(--font-mono);
-  font-size: clamp(0.85rem, 2vw, 1rem);
+  font-size: clamp(0.85rem, 2.5vw, 1.15rem);
   color: var(--text-muted);
-  margin-top: 0.75rem;
+  padding: 0 1rem;
+  animation: hero-fg-in 0.8s 0.3s ease-out both;
+}
+
+@keyframes hero-bg-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 0.25;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes hero-fg-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero__cursor {
@@ -428,7 +466,7 @@ ul {
   }
 
   .hero {
-    padding: 4rem 0 2.5rem;
+    padding: 4.5rem 0 2.5rem;
   }
 
   .nav__link {
@@ -438,5 +476,16 @@ ul {
 
   .timeline-entry {
     padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__name,
+  .hero__subtitle {
+    animation: none;
+  }
+
+  .hero__name {
+    opacity: 0.25;
   }
 }
