@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Set up QEMU
+        if: github.event_name == 'schedule'
         uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
@@ -36,7 +37,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64, linux/arm64/v8
+          platforms: ${{ github.event_name == 'schedule' && 'linux/amd64, linux/arm64/v8' || 'linux/amd64' }}
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/homepagers:latest
