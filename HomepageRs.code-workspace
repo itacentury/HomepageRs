@@ -27,21 +27,30 @@
                 "args": [
                     "clean",
                 ],
-                "group": {
-                    "kind": "build",
-                    "isDefault": false,
+                "group": "build",
+                "presentation": {
+                    "panel": "shared",
                 },
             },
             {
-                "label": "rust: bacon",
+                "label": "rust: bacon run-long",
                 "type": "shell",
                 "command": "bacon",
                 "args": [
                     "run-long",
                 ],
-                "group": {
-                    "kind": "build",
-                    "isDefault": false,
+                "group": "build",
+                "presentation": {
+                    "panel": "shared",
+                },
+            },
+            {
+                "label": "format: all",
+                "type": "shell",
+                "command": "cargo fmt && npx prettier --write '**/*.{css,md,json,yaml,yml,html,js}'",
+                "group": "build",
+                "presentation": {
+                    "panel": "shared",
                 },
             },
         ]
