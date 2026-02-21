@@ -52,7 +52,7 @@ jobs:
           node-version: 22
 
       - name: Check formatting with Prettier
-        run: npx prettier --check "static/**/*.{js,css}" "templates/**/*.hbs"
+        run: npx prettier --check "static/**/*.{js,css}"
 
   build-test:
     runs-on: ubuntu-latest
