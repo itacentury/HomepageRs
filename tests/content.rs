@@ -1,13 +1,6 @@
 use site::content;
 
 #[test]
-fn test_projects() {
-    let projects = content::get_projects();
-    assert_eq!(projects.len(), 4);
-    assert_eq!(projects[0].name, "HomepageRs");
-}
-
-#[test]
 fn test_education() {
     let education = content::get_education();
     assert_eq!(education.len(), 2);

@@ -35,6 +35,10 @@ RUN TARGET=$(cat /tmp/target) && \
     cp "target/${TARGET}/release/site" /site/site-binary
 
 FROM debian:12-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /site
 
 COPY --from=builder /site/site-binary ./site

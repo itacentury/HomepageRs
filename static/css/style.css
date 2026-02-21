@@ -7,9 +7,13 @@
   --text-muted: #8888a0;
   --accent-cyan: #00e5ff;
   --accent-purple: #7c4dff;
-  --accent-gradient: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --accent-gradient: linear-gradient(
+    135deg,
+    var(--accent-cyan),
+    var(--accent-purple)
+  );
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
   --radius: 8px;
   --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.15);
   --glow-purple: 0 0 20px rgba(124, 77, 255, 0.15);
@@ -101,7 +105,9 @@ ul {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* ── Navigation ───────────────────────────── */
@@ -127,7 +133,9 @@ ul {
   padding: 0.75rem 0.5rem;
   color: var(--text-muted);
   border-bottom: 2px solid transparent;
-  transition: color var(--transition), border-color var(--transition);
+  transition:
+    color var(--transition),
+    border-color var(--transition);
   text-decoration: none;
 }
 
@@ -171,7 +179,9 @@ ul {
   border-left: 3px solid var(--accent-cyan);
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 1.25rem 1.25rem 1.25rem 1.5rem;
-  transition: background var(--transition), box-shadow var(--transition);
+  transition:
+    background var(--transition),
+    box-shadow var(--transition);
 }
 
 .timeline-entry:not(:last-child) {
@@ -221,7 +231,10 @@ ul {
   padding: 1.25rem 1.5rem;
   color: var(--text-primary);
   text-decoration: none;
-  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
 }
 
 .link-card:not(:last-child) {
@@ -255,7 +268,9 @@ ul {
 .link-card__arrow {
   font-size: 1.2rem;
   color: var(--text-muted);
-  transition: transform var(--transition), color var(--transition);
+  transition:
+    transform var(--transition),
+    color var(--transition);
 }
 
 .link-card:hover .link-card__arrow {
@@ -263,132 +278,103 @@ ul {
   color: var(--accent-cyan);
 }
 
-/* ── Project slider ───────────────────────── */
-.project-showcase {
-  width: 100%;
+/* ── Repo cards ──────────────────────────── */
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.repo-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.project-showcase__header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  align-self: flex-start;
-}
-
-.project-showcase__name {
-  font-family: var(--font-mono);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.project-showcase__link-btn {
-  background: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  transition: color var(--transition), border-color var(--transition);
-}
-
-.project-showcase__link-btn:hover {
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
-}
-
-.slider-container {
-  position: relative;
-  width: 100%;
-  max-width: 700px;
-  overflow: hidden;
-  border-radius: var(--radius);
+  gap: 0.5rem;
   background: var(--bg-card);
-}
-
-.slider__track {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-}
-
-.slider__slide {
-  min-width: 100%;
-  height: 100%;
-}
-
-.slider__slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.slider__btn--prev,
-.slider__btn--next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(10, 10, 15, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  padding: 1.25rem;
   color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  text-decoration: none;
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.repo-card:hover {
+  background: var(--bg-card-hover);
+  box-shadow: var(--glow-cyan);
+  border-color: rgba(0, 229, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.repo-card__name {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--accent-cyan);
+}
+
+.repo-card__desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.repo-card__meta {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 0;
-  z-index: 10;
-  transition: background var(--transition), border-color var(--transition);
-  font-size: 0.9rem;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
 }
 
-.slider__btn--prev {
-  left: 10px;
-}
-
-.slider__btn--next {
-  right: 10px;
-}
-
-.slider__btn--prev:hover,
-.slider__btn--next:hover {
-  background: rgba(10, 10, 15, 0.85);
-  border-color: var(--accent-cyan);
-}
-
-.slider__dots {
-  margin-top: 1rem;
+.repo-card__lang {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 0.35rem;
 }
 
-.slider__dot {
-  height: 10px;
+.repo-card__lang-dot {
+  display: inline-block;
   width: 10px;
+  height: 10px;
   border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: background var(--transition), transform var(--transition);
-  padding: 0;
 }
 
-.slider__dot.active {
-  background: var(--accent-gradient);
-  transform: scale(1.3);
+.repo-card__stars {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.repo-card__stars .fa-star {
+  font-size: 0.65rem;
+  color: #f0c040;
+}
+
+/* ── GitHub fallback ─────────────────────── */
+.github-fallback {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+}
+
+.github-fallback__link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.github-fallback__link:hover {
+  color: var(--accent-purple);
 }
 
 /* ── Error pages ──────────────────────────── */

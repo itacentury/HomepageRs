@@ -1,13 +1,25 @@
 use actix_web::{App, test, web};
+use std::time::Duration;
 
-fn create_app_config() -> web::Data<handlebars::Handlebars<'static>> {
-    web::Data::new(site::create_handlebars())
+fn create_app_config() -> (
+    web::Data<handlebars::Handlebars<'static>>,
+    web::Data<site::github::RepoCache>,
+) {
+    let hb = web::Data::new(site::create_handlebars());
+    let cache = web::Data::new(site::github::RepoCache::new(None, Duration::from_secs(300)));
+    (hb, cache)
 }
 
 #[actix_web::test]
 async fn test_index_status() {
-    let hb = create_app_config();
-    let app = test::init_service(App::new().app_data(hb).configure(site::app_config)).await;
+    let (hb, cache) = create_app_config();
+    let app = test::init_service(
+        App::new()
+            .app_data(hb)
+            .app_data(cache)
+            .configure(site::app_config),
+    )
+    .await;
 
     let req = test::TestRequest::get().uri("/").to_request();
     let resp = test::call_service(&app, req).await;
@@ -18,8 +30,14 @@ async fn test_index_status() {
 
 #[actix_web::test]
 async fn test_index_sections() {
-    let hb = create_app_config();
-    let app = test::init_service(App::new().app_data(hb).configure(site::app_config)).await;
+    let (hb, cache) = create_app_config();
+    let app = test::init_service(
+        App::new()
+            .app_data(hb)
+            .app_data(cache)
+            .configure(site::app_config),
+    )
+    .await;
 
     let req = test::TestRequest::get().uri("/").to_request();
     let resp = test::call_service(&app, req).await;
@@ -33,8 +51,14 @@ async fn test_index_sections() {
 
 #[actix_web::test]
 async fn test_not_found() {
-    let hb = create_app_config();
-    let app = test::init_service(App::new().app_data(hb).configure(site::app_config)).await;
+    let (hb, cache) = create_app_config();
+    let app = test::init_service(
+        App::new()
+            .app_data(hb)
+            .app_data(cache)
+            .configure(site::app_config),
+    )
+    .await;
 
     let req = test::TestRequest::get().uri("/nonexistent").to_request();
     let resp = test::call_service(&app, req).await;
@@ -48,11 +72,35 @@ async fn test_not_found() {
 
 #[actix_web::test]
 async fn test_health() {
-    let hb = create_app_config();
-    let app = test::init_service(App::new().app_data(hb).configure(site::app_config)).await;
+    let (hb, cache) = create_app_config();
+    let app = test::init_service(
+        App::new()
+            .app_data(hb)
+            .app_data(cache)
+            .configure(site::app_config),
+    )
+    .await;
 
     let req = test::TestRequest::get().uri("/health").to_request();
     let resp = test::call_service(&app, req).await;
 
     assert_eq!(resp.status(), 200);
+}
+
+#[actix_web::test]
+async fn test_github_fallback() {
+    let (hb, cache) = create_app_config();
+    let app = test::init_service(
+        App::new()
+            .app_data(hb)
+            .app_data(cache)
+            .configure(site::app_config),
+    )
+    .await;
+
+    let req = test::TestRequest::get().uri("/").to_request();
+    let resp = test::call_service(&app, req).await;
+    let body = String::from_utf8(test::read_body(resp).await.to_vec()).unwrap();
+
+    assert!(body.contains("Visit my GitHub"));
 }

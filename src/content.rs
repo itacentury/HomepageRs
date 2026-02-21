@@ -1,13 +1,5 @@
 use serde::Serialize;
 
-/// A portfolio project with a name, link, and preview image.
-#[derive(Serialize)]
-pub struct Project {
-    pub name: &'static str,
-    pub link: &'static str,
-    pub image: &'static str,
-}
-
 /// An entry in the education timeline.
 #[derive(Serialize)]
 pub struct Education {
@@ -32,32 +24,6 @@ pub struct Link {
     pub name: &'static str,
     pub link: &'static str,
     pub linkname: &'static str,
-}
-
-/// Return all portfolio projects.
-pub fn get_projects() -> Vec<Project> {
-    vec![
-        Project {
-            name: "HomepageRs",
-            link: "https://github.com/itacentury/HomepageRs",
-            image: "/images/homepagers-preview.jpg",
-        },
-        Project {
-            name: "CenturyPackageBO1",
-            link: "https://github.com/itacentury/CenturyPackageBO1",
-            image: "/images/centurypackagebo1-preview.jpg",
-        },
-        Project {
-            name: "T5GSCLoader",
-            link: "https://github.com/itacentury/T5GSCLoader",
-            image: "/images/t5gscloader-preview.jpg",
-        },
-        Project {
-            name: "SudokuPy",
-            link: "https://github.com/itacentury/SudokuPy",
-            image: "/images/sudokupy-preview.jpg",
-        },
-    ]
 }
 
 /// Return all education entries.

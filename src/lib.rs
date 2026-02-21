@@ -3,6 +3,7 @@ use handlebars::Handlebars;
 use serde_json::json;
 
 pub mod content;
+pub mod github;
 
 /// Create and configure a Handlebars registry with all project templates.
 pub fn create_handlebars() -> Handlebars<'static> {
@@ -29,11 +30,18 @@ pub fn create_handlebars() -> Handlebars<'static> {
 }
 
 /// Render the index page with all content sections.
-pub async fn index(hb: web::Data<Handlebars<'_>>) -> HttpResponse {
+pub async fn index(
+    hb: web::Data<Handlebars<'_>>,
+    repo_cache: web::Data<github::RepoCache>,
+) -> HttpResponse {
+    let repos = repo_cache.get_repos().await;
+    let github_unavailable = repos.is_none();
+
     let body = hb.render(
         "index",
         &json!({
-            "projects": content::get_projects(),
+            "repos": repos.unwrap_or_default(),
+            "github_unavailable": github_unavailable,
             "education": content::get_education(),
             "experience": content::get_experience(),
             "links": content::get_links(),

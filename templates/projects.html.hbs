@@ -1,29 +1,46 @@
-<div class="project-showcase">
-  <div class="project-showcase__header">
-    <span class="project-showcase__name" id="project-name">placeholder</span>
-    <button class="project-showcase__link-btn" aria-label="Open project link">
-      <i class="fas fa-external-link-alt"></i>
-    </button>
+{{#if github_unavailable}}
+  <div class="github-fallback">
+    <p>Projects are currently unavailable.</p>
+    <a
+      class="github-fallback__link"
+      href="https://github.com/itacentury"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Visit my GitHub &#8594;
+    </a>
   </div>
-
-  <div class="slider-container">
-    <div class="slider__track">
-      {{#each projects}}
-        <div class="slider__slide" data-name="{{name}}" data-link="{{link}}">
-          <img src="{{image}}" alt="{{name}}" loading="lazy" />
-        </div>
-      {{/each}}
-    </div>
-    <button
-      class="slider__btn--prev"
-      aria-label="Previous slide"
-    >&#10094;</button>
-    <button class="slider__btn--next" aria-label="Next slide">&#10095;</button>
-  </div>
-
-  <div class="slider__dots">
-    {{#each projects}}
-      <span class="slider__dot" data-index="{{@index}}"></span>
+{{else}}
+  <div class="repo-grid">
+    {{#each repos}}
+      <a
+        class="repo-card"
+        href="{{url}}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="repo-card__name">{{name}}</span>
+        {{#if description}}
+          <span class="repo-card__desc">{{description}}</span>
+        {{/if}}
+        <span class="repo-card__meta">
+          {{#if primary_language}}
+            <span class="repo-card__lang">
+              <span
+                class="repo-card__lang-dot"
+                style="background:{{primary_language.color}}"
+              ></span>
+              {{primary_language.name}}
+            </span>
+          {{/if}}
+          {{#if stargazer_count}}
+            <span class="repo-card__stars">
+              <i class="fas fa-star"></i>
+              {{stargazer_count}}
+            </span>
+          {{/if}}
+        </span>
+      </a>
     {{/each}}
   </div>
-</div>
+{{/if}}
