@@ -1,0 +1,9 @@
+services:
+  homepage:
+    container_name: homepagers
+    image: hoffmanju/homepagers:latest
+    ports:
+      - 8000:8000/tcp
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    restart: unless-stopped

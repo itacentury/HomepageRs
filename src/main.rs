@@ -7,7 +7,7 @@ async fn main() -> std::io::Result<()> {
     let hb_data = web::Data::new(hb);
 
     dotenvy::dotenv().ok();
-    let token = std::env::var("GITHUB_TOKEN").ok();
+    let token = std::env::var("GITHUB_TOKEN").ok().filter(|t| !t.is_empty());
     if token.is_none() {
         eprintln!("Warning: GITHUB_TOKEN not set — projects section will show fallback");
     }
