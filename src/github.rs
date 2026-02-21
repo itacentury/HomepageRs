@@ -111,10 +111,10 @@ impl RepoCache {
 
         let mut cache = self.cache.lock().await;
 
-        if let Some(entry) = cache.as_ref() {
-            if entry.fetched_at.elapsed() < self.ttl {
-                return Some(entry.repos.clone());
-            }
+        if let Some(entry) = cache.as_ref()
+            && entry.fetched_at.elapsed() < self.ttl
+        {
+            return Some(entry.repos.clone());
         }
 
         match fetch_pinned_repos(token).await {
@@ -167,7 +167,14 @@ async fn fetch_pinned_repos(token: &str) -> Result<Vec<PinnedRepo>, reqwest::Err
     let gql: GqlResponse = resp.json().await?;
     let repos = gql
         .data
-        .map(|d| d.user.pinned_items.nodes.into_iter().map(Into::into).collect())
+        .map(|d| {
+            d.user
+                .pinned_items
+                .nodes
+                .into_iter()
+                .map(Into::into)
+                .collect()
+        })
         .unwrap_or_default();
 
     Ok(repos)
