@@ -81,14 +81,36 @@ ul {
   overflow: visible;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  bottom: -4rem;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(219, 126, 166, 0.08);
+  filter: blur(3px);
+  z-index: -1;
+  pointer-events: none;
+}
+
 .hero__name {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-family: "Space Grotesk", var(--font-body);
+  font-family: "Unbounded", var(--font-body);
   font-weight: 700;
-  font-size: clamp(3rem, 13vw, 10rem);
-  background: var(--accent-gradient);
+  font-size: clamp(2.5rem, 10vw, 7.5rem);
+  background: linear-gradient(
+    135deg,
+    var(--accent-cyan),
+    var(--accent-purple),
+    var(--accent-cyan)
+  );
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -98,11 +120,14 @@ ul {
   user-select: none;
   white-space: nowrap;
   pointer-events: none;
-  animation: hero-bg-in 1s ease-out both;
+  animation:
+    hero-bg-in 1s ease-out both,
+    gradient-shift 6s ease 1s infinite;
 }
 
 .hero__subtitle {
   position: relative;
+  margin-top: 4.5rem;
   font-family: var(--font-mono);
   font-size: clamp(0.85rem, 2.5vw, 1.15rem);
   color: var(--text-muted);
@@ -118,6 +143,18 @@ ul {
   to {
     opacity: 0.25;
     transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
