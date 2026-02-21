@@ -1,12 +1,12 @@
-/* ── Neon Circuit — Custom Properties ──────── */
+/* ── Soft Lavender & Mint — Custom Properties ─ */
 :root {
-  --bg-primary: #0a0a0f;
-  --bg-card: #12121a;
-  --bg-card-hover: #1a1a25;
-  --text-primary: #e0e0e8;
-  --text-muted: #8888a0;
-  --accent-cyan: #00e5ff;
-  --accent-purple: #7c4dff;
+  --bg-primary: #0c0c14;
+  --bg-card: #141420;
+  --bg-card-hover: #1c1c2a;
+  --text-primary: #e2e0ec;
+  --text-muted: #908ea0;
+  --accent-cyan: #7edbb3;
+  --accent-purple: #b4a7f5;
   --accent-gradient: linear-gradient(
     135deg,
     var(--accent-cyan),
@@ -15,8 +15,8 @@
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
   --radius: 8px;
-  --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.15);
-  --glow-purple: 0 0 20px rgba(124, 77, 255, 0.15);
+  --glow-cyan: 0 0 20px rgba(126, 219, 179, 0.12);
+  --glow-purple: 0 0 20px rgba(180, 167, 245, 0.12);
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -182,8 +182,8 @@ ul {
 }
 
 .nav__link.active {
-  color: var(--accent-cyan);
-  border-image: var(--accent-gradient) 1;
+  color: var(--accent-purple);
+  border-bottom-color: var(--accent-purple);
 }
 
 /* ── Content sections ─────────────────────── */
