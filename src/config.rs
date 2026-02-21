@@ -77,19 +77,19 @@ pub fn load_config() -> Result<AppConfig, Box<dyn std::error::Error>> {
 
 /// Override YAML values with environment variables when set.
 fn apply_env_overrides(config: &mut AppConfig) {
-    if let Ok(token) = std::env::var("GITHUB_TOKEN") {
-        if !token.is_empty() {
-            config.github.token = Some(token);
-        }
+    if let Ok(token) = std::env::var("GITHUB_TOKEN")
+        && !token.is_empty()
+    {
+        config.github.token = Some(token);
     }
-    if let Ok(username) = std::env::var("GITHUB_USERNAME") {
-        if !username.is_empty() {
-            config.github.username = username;
-        }
+    if let Ok(username) = std::env::var("GITHUB_USERNAME")
+        && !username.is_empty()
+    {
+        config.github.username = username;
     }
-    if let Ok(ttl) = std::env::var("CACHE_TTL_SECS") {
-        if let Ok(secs) = ttl.parse::<u64>() {
-            config.github.cache_ttl_secs = secs;
-        }
+    if let Ok(ttl) = std::env::var("CACHE_TTL_SECS")
+        && let Ok(secs) = ttl.parse::<u64>()
+    {
+        config.github.cache_ttl_secs = secs;
     }
 }

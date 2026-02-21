@@ -53,6 +53,16 @@
                     "panel": "shared",
                 },
             },
+            {
+                "label": "ci: simulate",
+                "type": "shell",
+                "command": "cargo clean && cargo fmt -- --check && cargo clippy --all-targets --all-features -- -D warnings && npx prettier --check 'static/**/*.{js,css}' && cargo build --verbose && cargo test --verbose",
+                "group": "build",
+                "presentation": {
+                    "panel": "shared",
+                    "clear": true,
+                },
+            },
         ]
     },
     "extensions": {
