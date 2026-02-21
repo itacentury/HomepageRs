@@ -1,4 +1,4 @@
-const navLinks = document.querySelectorAll("nav a");
+const navLinks = document.querySelectorAll(".nav__link");
 const sections = document.querySelectorAll(".content-section");
 
 navLinks.forEach((link) => {

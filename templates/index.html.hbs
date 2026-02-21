@@ -1,18 +1,13 @@
 {{#*inline "page"}}
 
-<h1 class="ascii-art">
-<!-- prettier-ignore-start -->
-       __      ___                __  __      ________                          
-      / /_  __/ (_)___ _____     / / / /___  / __/ __/___ ___  ____ _____  ____ 
- __  / / / / / / / __ `/ __ \   / /_/ / __ \/ /_/ /_/ __ `__ \/ __ `/ __ \/ __ \
-/ /_/ / /_/ / / / /_/ / / / /  / __  / /_/ / __/ __/ / / / / / /_/ / / / / / / /
-\____/\__,_/_/_/\__,_/_/ /_/  /_/ /_/\____/_/ /_/ /_/ /_/ /_/\__,_/_/ /_/_/ /_/ 
-<!-- prettier-ignore-end -->
-</h1>
+<header class="hero">
+  <h1 class="hero__name">Julian Hoffmann</h1>
+  <p class="hero__subtitle">Software Developer<span class="hero__cursor"></span></p>
+</header>
 
 {{> nav}}
 
-<div class="content-box">
+<main class="content">
   <div id="projects" class="content-section">
     {{> projects}}
   </div>
@@ -25,7 +20,7 @@
   <div id="links" class="content-section">
     {{> links}}
   </div>
-</div>
+</main>
 
 {{/inline}}
 {{> layout}}

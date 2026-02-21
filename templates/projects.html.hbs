@@ -1,28 +1,29 @@
-<div class="background">
-  <div class="prompt-row">
-    <div class="terminal-prompt" id="project-name">
-      placeholder
-    </div>
-    <button class="link-button-inline">
+<div class="project-showcase">
+  <div class="project-showcase__header">
+    <span class="project-showcase__name" id="project-name">placeholder</span>
+    <button class="project-showcase__link-btn" aria-label="Open project link">
       <i class="fas fa-external-link-alt"></i>
     </button>
   </div>
 
   <div class="slider-container">
-    <div class="slider">
+    <div class="slider__track">
       {{#each projects}}
-        <div class="slide" data-name="{{name}}" data-link="{{link}}">
+        <div class="slider__slide" data-name="{{name}}" data-link="{{link}}">
           <img src="{{image}}" alt="{{name}}" loading="lazy" />
         </div>
       {{/each}}
     </div>
-    <button class="prev">&#10094;</button>
-    <button class="next">&#10095;</button>
-
+    <button
+      class="slider__btn--prev"
+      aria-label="Previous slide"
+    >&#10094;</button>
+    <button class="slider__btn--next" aria-label="Next slide">&#10095;</button>
   </div>
-  <div class="dots-container">
+
+  <div class="slider__dots">
     {{#each projects}}
-      <span class="dot" data-index="{{@index}}"></span>
+      <span class="slider__dot" data-index="{{@index}}"></span>
     {{/each}}
   </div>
 </div>

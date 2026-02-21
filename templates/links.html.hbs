@@ -1,10 +1,14 @@
 {{#each links}}
-  <div class="list-mb">
-    <div class="terminal-prompt">{{name}}</div>
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      href="{{link}}"
-    >&nbsp;&nbsp;{{linkname}}</a>
-  </div>
+  <a
+    class="link-card"
+    href="{{link}}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <div class="link-card__info">
+      <span class="link-card__name">{{name}}</span>
+      <span class="link-card__url">{{linkname}}</span>
+    </div>
+    <span class="link-card__arrow">&#8594;</span>
+  </a>
 {{/each}}

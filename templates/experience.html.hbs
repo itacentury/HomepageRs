@@ -1,6 +1,10 @@
 {{#each experience}}
-  <div class="list-mb">
-    <div class="terminal-prompt">{{type}} ({{year}})</div>
-    <p>&nbsp;&nbsp;{{name}} at {{place}}</p>
-  </div>
+  <article class="timeline-entry">
+    <div>
+      <span class="timeline-entry__badge">{{type}}</span>
+      <span class="timeline-entry__year">{{year}}</span>
+    </div>
+    <h3 class="timeline-entry__title">{{name}}</h3>
+    <p class="timeline-entry__place">{{place}}</p>
+  </article>
 {{/each}}
