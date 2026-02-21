@@ -1,0 +1,28 @@
+personal:
+  name: "Your Name"
+  title: "Your Title"
+  meta_description: "Your Name - Your Title. Portfolio."
+  og_title: "Your Name | Portfolio"
+  og_description: "Your Title - Projects, Experience, and Education."
+
+github:
+  username: "your-github-username"
+  # token: "ghp_..."          # optional, or set GITHUB_TOKEN env var
+  # cache_ttl_secs: 300       # optional, default 300
+
+education:
+  - type: "Degree Type"
+    year: "20XX-20XX"
+    name: "Field of Study"
+    place: "University"
+
+experience:
+  - type: "Employment Type"
+    year: "20XX-Now"
+    name: "Job Title"
+    place: "Company"
+
+links:
+  - name: "GitHub"
+    link: "https://github.com/username"
+    linkname: "github.com/username"

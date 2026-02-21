@@ -4,7 +4,8 @@ services:
     image: hoffmanju/homepagers:latest
     ports:
       - 8000:8000/tcp
+    volumes:
+      - ./config.yaml:/site/config.yaml:ro
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
-      - GITHUB_USERNAME=${GITHUB_USERNAME}
     restart: unless-stopped

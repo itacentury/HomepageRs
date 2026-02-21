@@ -1,0 +1,27 @@
+personal:
+  name: "Test User"
+  title: "Test Title"
+  meta_description: "Test description"
+  og_title: "Test OG Title"
+  og_description: "Test OG Description"
+
+github:
+  username: "testuser"
+  cache_ttl_secs: 60
+
+education:
+  - type: "Bachelor"
+    year: "2020-2024"
+    name: "Computer Science"
+    place: "Test University"
+
+experience:
+  - type: "Fulltime"
+    year: "2024-Now"
+    name: "Developer"
+    place: "Test Corp"
+
+links:
+  - name: "GitHub"
+    link: "https://github.com/testuser"
+    linkname: "github.com/testuser"

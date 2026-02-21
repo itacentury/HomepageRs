@@ -23,20 +23,37 @@ Before building and running this project, make sure the following tools are inst
 
 ## Configuration
 
-The projects section fetches pinned repositories from GitHub. Create a `.env` file in the project root:
+All portfolio content is configured through a single YAML file. Copy the example config and customize it:
 
 ```bash
-GITHUB_USERNAME=yourGitHubUsername
-GITHUB_TOKEN=ghp_yourTokenHere
+cp config.example.yaml config.yaml
 ```
 
-| Variable          | Required | Description                                                                                        |
-| ----------------- | -------- | -------------------------------------------------------------------------------------------------- |
-| `GITHUB_USERNAME` | **Yes**  | GitHub username whose pinned repos are displayed                                                   |
-| `GITHUB_TOKEN`    | No       | Personal access token ([create one](https://github.com/settings/tokens), no special scopes needed) |
-| `CACHE_TTL_SECS`  | No       | Cache lifetime in seconds (default: `300`)                                                         |
+Edit `config.yaml` with your personal information, education, experience, and links. See [`config.example.yaml`](config.example.yaml) for the full schema.
+
+### GitHub integration
+
+The projects section fetches pinned repositories from GitHub. Set your GitHub token either in `config.yaml` or via environment variable:
+
+```yaml
+github:
+  username: "yourGitHubUsername"
+  token: "ghp_yourTokenHere" # or set GITHUB_TOKEN env var
+  # cache_ttl_secs: 300         # optional, default 300
+```
 
 If no token is set, the site falls back to a "Visit my GitHub" link.
+
+### Environment variable overrides
+
+Environment variables take precedence over YAML values. You can also use a `.env` file:
+
+| Variable          | Description                                  |
+| ----------------- | -------------------------------------------- |
+| `CONFIG_PATH`     | Path to config file (default: `config.yaml`) |
+| `GITHUB_TOKEN`    | Overrides `github.token` from YAML           |
+| `GITHUB_USERNAME` | Overrides `github.username` from YAML        |
+| `CACHE_TTL_SECS`  | Overrides `github.cache_ttl_secs` from YAML  |
 
 ## Build & Run
 
@@ -58,7 +75,7 @@ If no token is set, the site falls back to a "Visit my GitHub" link.
 
 A sample [`docker-compose.yml`](docker-compose.yml) is included in the project root. To run:
 
-1. Make sure your `.env` file with the `GITHUB_TOKEN` exists in the project root (see [Configuration](#configuration)).
+1. Make sure your `config.yaml` exists in the project root (see [Configuration](#configuration)).
 
 2. Start the container:
 
@@ -73,3 +90,5 @@ A sample [`docker-compose.yml`](docker-compose.yml) is included in the project r
    ```bash
    docker compose down
    ```
+
+The Docker image ships with `config.example.yaml` as a default config. Mount your own `config.yaml` via the volume in `docker-compose.yml` and set `GITHUB_TOKEN` via environment variable.

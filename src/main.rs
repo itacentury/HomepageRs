@@ -9,29 +9,26 @@ async fn main() -> std::io::Result<()> {
 
     dotenvy::dotenv().ok();
 
-    let token = std::env::var("GITHUB_TOKEN").ok().filter(|t| !t.is_empty());
-    if token.is_none() {
-        eprintln!("Warning: GITHUB_TOKEN not set — projects section will show fallback");
-    }
-
-    let username = match std::env::var("GITHUB_USERNAME") {
-        Ok(u) if !u.is_empty() => u,
-        _ => {
-            eprintln!("Fatal: GITHUB_USERNAME environment variable is required");
+    let config = match site::config::load_config() {
+        Ok(c) => c,
+        Err(e) => {
+            eprintln!("Fatal: failed to load configuration: {e}");
             std::process::exit(1);
         }
     };
 
-    let cache_ttl = std::env::var("CACHE_TTL_SECS")
-        .ok()
-        .and_then(|s| s.parse().ok())
-        .unwrap_or(300u64);
+    let token = config.github.token.clone();
+    if token.is_none() {
+        eprintln!("Warning: GitHub token not set — projects section will show fallback");
+    }
 
     let repo_cache = web::Data::new(site::github::RepoCache::new(
         token,
-        username,
-        Duration::from_secs(cache_ttl),
+        config.github.username.clone(),
+        Duration::from_secs(config.github.cache_ttl_secs),
     ));
+
+    let app_config = web::Data::new(config);
 
     HttpServer::new(move || {
         App::new()
@@ -51,6 +48,7 @@ async fn main() -> std::io::Result<()> {
             )
             .app_data(hb_data.clone())
             .app_data(repo_cache.clone())
+            .app_data(app_config.clone())
             .configure(site::app_config)
     })
     .bind(("0.0.0.0", 8000))?

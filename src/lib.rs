@@ -2,7 +2,7 @@ use actix_web::{HttpRequest, HttpResponse, web};
 use handlebars::Handlebars;
 use serde_json::json;
 
-pub mod content;
+pub mod config;
 pub mod github;
 
 /// Create and configure a Handlebars registry with all project templates.
@@ -38,18 +38,22 @@ pub fn create_handlebars() -> Handlebars<'static> {
 pub async fn index(
     hb: web::Data<Handlebars<'_>>,
     repo_cache: web::Data<github::RepoCache>,
+    app_config: web::Data<config::AppConfig>,
 ) -> HttpResponse {
     let repos = repo_cache.get_repos().await;
     let github_unavailable = repos.is_none();
+    let github_url = format!("https://github.com/{}", app_config.github.username);
 
     let body = hb.render(
         "index",
         &json!({
             "repos": repos.unwrap_or_default(),
             "github_unavailable": github_unavailable,
-            "education": content::get_education(),
-            "experience": content::get_experience(),
-            "links": content::get_links(),
+            "github_url": github_url,
+            "personal": app_config.personal,
+            "education": app_config.education,
+            "experience": app_config.experience,
+            "links": app_config.links,
         }),
     );
 
