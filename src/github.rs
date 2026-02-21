@@ -91,15 +91,17 @@ struct CacheEntry {
 /// Falls back to stale cache on errors and returns `None` when no token is set.
 pub struct RepoCache {
     token: Option<String>,
+    username: String,
     ttl: Duration,
     cache: Mutex<Option<CacheEntry>>,
 }
 
 impl RepoCache {
-    /// Create a new cache with an optional GitHub token and cache TTL.
-    pub fn new(token: Option<String>, ttl: Duration) -> Self {
+    /// Create a new cache with an optional GitHub token, username, and cache TTL.
+    pub fn new(token: Option<String>, username: String, ttl: Duration) -> Self {
         Self {
             token,
+            username,
             ttl,
             cache: Mutex::new(None),
         }
@@ -117,7 +119,7 @@ impl RepoCache {
             return Some(entry.repos.clone());
         }
 
-        match fetch_pinned_repos(token).await {
+        match fetch_pinned_repos(token, &self.username).await {
             Ok(repos) => {
                 *cache = Some(CacheEntry {
                     repos: repos.clone(),
@@ -126,40 +128,48 @@ impl RepoCache {
                 Some(repos)
             }
             Err(e) => {
-                eprintln!("GitHub API error: {e}");
+                eprintln!("GitHub API error: failed to fetch repositories");
+                eprintln!("  Details: {e}");
                 cache.as_ref().map(|entry| entry.repos.clone())
             }
         }
     }
 }
 
-const GRAPHQL_QUERY: &str = r#"
-query {
-  user(login: "itacentury") {
-    pinnedItems(first: 6, types: REPOSITORY) {
-      nodes {
-        ... on Repository {
+/// Fetch pinned repositories from GitHub's GraphQL API.
+async fn fetch_pinned_repos(
+    token: &str,
+    username: &str,
+) -> Result<Vec<PinnedRepo>, reqwest::Error> {
+    let query = format!(
+        r#"query {{
+  user(login: "{username}") {{
+    pinnedItems(first: 6, types: REPOSITORY) {{
+      nodes {{
+        ... on Repository {{
           name
           description
           url
           stargazerCount
-          primaryLanguage { name color }
+          primaryLanguage {{ name color }}
           updatedAt
-        }
-      }
-    }
-  }
-}
-"#;
+        }}
+      }}
+    }}
+  }}
+}}"#
+    );
 
-/// Fetch pinned repositories from GitHub's GraphQL API.
-async fn fetch_pinned_repos(token: &str) -> Result<Vec<PinnedRepo>, reqwest::Error> {
-    let client = reqwest::Client::new();
+    let client = reqwest::Client::builder()
+        .timeout(Duration::from_secs(10))
+        .build()
+        .expect("failed to build HTTP client");
+
     let resp = client
         .post("https://api.github.com/graphql")
         .header("Authorization", format!("Bearer {token}"))
         .header("User-Agent", "HomepageRs")
-        .json(&serde_json::json!({ "query": GRAPHQL_QUERY }))
+        .json(&serde_json::json!({ "query": query }))
         .send()
         .await?
         .error_for_status()?;

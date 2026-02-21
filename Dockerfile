@@ -39,10 +39,13 @@ FROM debian:12-slim
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
+RUN useradd --system --no-create-home appuser
+
 WORKDIR /site
 
 COPY --from=builder /site/site-binary ./site
 COPY --from=builder /site/static ./static
 COPY --from=builder /site/templates ./templates
 
+USER appuser
 CMD ["./site"]

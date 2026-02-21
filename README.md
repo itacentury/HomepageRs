@@ -23,13 +23,18 @@ Before building and running this project, make sure the following tools are inst
 
 ## Configuration
 
-The projects section fetches pinned repositories from GitHub. To enable this, create a `.env` file in the project root:
+The projects section fetches pinned repositories from GitHub. Create a `.env` file in the project root:
 
 ```bash
+GITHUB_USERNAME=yourGitHubUsername
 GITHUB_TOKEN=ghp_yourTokenHere
 ```
 
-You can generate a token at [github.com/settings/tokens](https://github.com/settings/tokens). No special scopes are required for reading public pinned repositories.
+| Variable          | Required | Description                                                                                        |
+| ----------------- | -------- | -------------------------------------------------------------------------------------------------- |
+| `GITHUB_USERNAME` | **Yes**  | GitHub username whose pinned repos are displayed                                                   |
+| `GITHUB_TOKEN`    | No       | Personal access token ([create one](https://github.com/settings/tokens), no special scopes needed) |
+| `CACHE_TTL_SECS`  | No       | Cache lifetime in seconds (default: `300`)                                                         |
 
 If no token is set, the site falls back to a "Visit my GitHub" link.
 

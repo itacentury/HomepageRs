@@ -6,4 +6,5 @@ services:
       - 8000:8000/tcp
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_USERNAME=${GITHUB_USERNAME}
     restart: unless-stopped

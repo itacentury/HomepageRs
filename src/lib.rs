@@ -6,6 +6,9 @@ pub mod content;
 pub mod github;
 
 /// Create and configure a Handlebars registry with all project templates.
+///
+/// Terminates the process with an error message if any template fails to load,
+/// since the application cannot serve pages without its templates.
 pub fn create_handlebars() -> Handlebars<'static> {
     let mut hb = Handlebars::new();
 
@@ -22,8 +25,10 @@ pub fn create_handlebars() -> Handlebars<'static> {
     ];
 
     for (name, path) in templates {
-        hb.register_template_file(name, path)
-            .unwrap_or_else(|e| panic!("Failed to register template '{name}': {e}"));
+        if let Err(e) = hb.register_template_file(name, path) {
+            eprintln!("Fatal: failed to register template '{name}': {e}");
+            std::process::exit(1);
+        }
     }
 
     hb
@@ -54,7 +59,10 @@ pub async fn index(
             eprintln!("Template render error: {e}");
             HttpResponse::InternalServerError()
                 .content_type("text/html")
-                .body(hb.render("error/500", &json!({})).unwrap_or_default())
+                .body(
+                    hb.render("error/500", &json!({}))
+                        .unwrap_or_else(|_| "<h1>500 — Internal Server Error</h1>".into()),
+                )
         }
     }
 }
@@ -68,7 +76,7 @@ pub async fn health() -> HttpResponse {
 pub async fn not_found(req: HttpRequest, hb: web::Data<Handlebars<'_>>) -> HttpResponse {
     let body = hb
         .render("error/404", &json!({ "uri": req.uri().to_string() }))
-        .unwrap_or_default();
+        .unwrap_or_else(|_| "<h1>404 — Not Found</h1>".into());
     HttpResponse::NotFound()
         .content_type("text/html")
         .body(body)

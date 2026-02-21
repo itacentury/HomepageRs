@@ -6,7 +6,11 @@ fn create_app_config() -> (
     web::Data<site::github::RepoCache>,
 ) {
     let hb = web::Data::new(site::create_handlebars());
-    let cache = web::Data::new(site::github::RepoCache::new(None, Duration::from_secs(300)));
+    let cache = web::Data::new(site::github::RepoCache::new(
+        None,
+        "test".to_string(),
+        Duration::from_secs(300),
+    ));
     (hb, cache)
 }
 
