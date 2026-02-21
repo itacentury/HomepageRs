@@ -1,7 +1,7 @@
 # HomepageRs
 
-[![Rust lint, build & test](https://github.com/itacentury/HomepageRs/actions/workflows/rust-lint-build-test.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/rust-lint-build-test.yml)
-[![Docker build & push](https://github.com/itacentury/HomepageRs/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/docker-build-push.yml)
+[![Lint](https://github.com/itacentury/HomepageRs/actions/workflows/lint.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/lint.yml)
+[![Docker](https://github.com/itacentury/HomepageRs/actions/workflows/docker.yml/badge.svg)](https://github.com/itacentury/HomepageRs/actions/workflows/docker.yml)
 
 HomepageRs is a lightweight personal portfolio website built with [Actix-web](https://actix.rs) in Rust. The projects section dynamically displays pinned GitHub repositories via the GitHub GraphQL API.
 

@@ -1,8 +1,8 @@
-name: Docker build & push
+name: Docker
 
 on:
   workflow_run:
-    workflows: ["Rust lint, build & test"]
+    workflows: ["Lint"]
     types:
       - completed
   schedule:
