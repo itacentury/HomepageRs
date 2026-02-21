@@ -1,0 +1,13 @@
+target/
+.git/
+.github/
+.env
+*.md
+*.pdb
+bacon.toml
+docker-compose.yml
+Dockerfile
+LICENSE
+TODO
+tests/
+HomepageRs.code-workspace
